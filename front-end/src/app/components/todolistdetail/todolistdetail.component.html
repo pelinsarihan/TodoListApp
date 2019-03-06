@@ -1,0 +1,114 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-light">
+  <a class="navbar-brand">TodoListApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor03"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button [routerLink]="['/login']" class="btn btn-secondary my-2 my-sm-0" type="submit"
+        (click)="Logout()">Logout</button>
+    </form>
+  </div>
+</nav>
+<br><br>
+<div class="container center col-md-10">
+  <div class="jumbotron-design">
+  <h3 class="center-grid">{{todo_name}}</h3>
+  <br>
+<div>
+  <p><button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+      aria-controls="collapseExample">
+      +Filter</button></p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body">
+        <fieldset class="form-group" *ngFor="let filter of filterList;">
+            <div class="form-check">
+              <label class="form-check-label">
+              <input type="radio" class="form-check-input" name="optionsRadios" (change)="FilterByStatus(filter.status);">
+              {{filter.name}}
+              </label>
+            </div>
+          </fieldset>
+          <div class="container">
+              <button type="button" class="btn btn-primary" (click)="Clear()">Clear</button>
+          </div>
+    </div>
+  </div>
+</div>
+
+</div>
+<br>
+<div class="container center col-md-3 col-md-offset-4" style="padding-left: 5rem;">
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#createTodo">
+        Add New Todo
+      </button>
+</div>
+<br>
+<div class="modal fade" id="createTodo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Add New Todo</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <label>Todo Name</label>
+        <input type="text" class="form-control" placeholder="Enter New Todo Name" id="inputDefault" #newTodoName>
+        <br>
+        <label>Deadline</label>
+        <input type='datetime-local' class="form-control" #deadline1>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="PostTodo(newTodoName, deadline1)">Create</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+  <div class="container center col-md-12">
+    <div class="container center-grid">
+      <table class="table table-hover table-responsive">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col"><button type="button" class="btn btn-link" (click)="SortTodoDSCByStatus()"><i class="fas fa-arrow-up"></i></button>
+              <span>Status</span>
+              <button type="button" class="btn btn-link"(click)="SortTodoASCByStatus()"><i class="fas fa-arrow-down"></i></button></th>
+            
+            <th scope="col"><button type="button" class="btn btn-link" (click)="SortTodoDSCByTodoName()"><i class="fas fa-arrow-up"></i></button>
+              <span>TodoList Names</span>
+              <button type="button" class="btn btn-link"(click)="SortTodoASCByTodoName()"><i class="fas fa-arrow-down"></i></button></th>
+            
+            <th scope="col"><button type="button" class="btn btn-link" (click)="SortTodoDSCByCreatedDate()"><i class="fas fa-arrow-up"></i></button>
+              <span>CreatedDate</span>
+              <button type="button" class="btn btn-link"(click)="SortTodoASCByCreatedDate()"><i class="fas fa-arrow-down"></i></button></th>
+            
+              <th scope="col"><button type="button" class="btn btn-link" (click)="SortTodoDSCByDeadline()"><i class="fas fa-arrow-up"></i></button>
+              <span>Deadline</span>
+              <button type="button" class="btn btn-link"(click)="SortTodoASCByDeadline()"><i class="fas fa-arrow-down"></i></button></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="table-light" *ngFor="let todo of todoListDetail; let i = index;">
+            <td scope="row" #index>{{i+1}}</td>
+            <td scope="row" style="text-align: center;">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="form-check-input"
+                [(ngModel)]="todo.marked" (change)="toggleVisibility($event, todo)">
+              </div>
+            </td>
+            <td scope="row" #todoName>{{todo.todoName}}</td>
+            <td scope="row" #createdDate>{{todo.createdDate | date : "MM/dd/yyyy HH:mm:ss"}}</td>
+            <td scope="row" #deadline2>{{todo.deadline | date : "MM/dd/yyyy HH:mm:ss"}}</td>
+            <td><button type="button" class="btn btn-danger" (click)="DeleteTodo(todo)">
+                <i class="fas fa-trash-alt"></i></button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

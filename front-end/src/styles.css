@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import 'https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css';
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js';*/
+@import 'https://stackpath.bootstrapcdn.com/bootswatch/4.2.1/darkly/bootstrap.min.css';
+
+.center {
+    margin: auto;
+    width: 100%;
+    padding: auto;
+}
+
+ .jumbotron-design{
+    padding-right: 1rem;
+    padding-left: 1rem;
+    padding-top:  1rem;
+    padding-bottom: 0.5rem;
+    border: 0.5px solid #303030;
+    border-radius: 0.3rem;
+    background-color: #303030;
+}
+
+/* .table-center{
+    margin: 5.0px;
+    width: 100%;
+    padding-top:  5.0px;
+} */
+
+.center-grid {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    /* place-items: center; */
+  }

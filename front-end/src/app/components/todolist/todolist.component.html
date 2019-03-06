@@ -1,0 +1,65 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-light">
+  <a class="navbar-brand">TodoListApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor03"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button [routerLink]="['/login']" class="btn btn-secondary my-2 my-sm-0" type="submit"
+        (click)="Logout()">Logout</button>
+    </form>
+  </div>
+</nav>
+<br><br>
+<div class="container center col-md-3 col-md-offset-4" style="padding-left: 5rem;">
+    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#createTodo">
+        Create New TodoList
+      </button>
+</div>
+<br>
+<div class="modal fade" id="createTodo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel">Create New TodoList</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="form-control" placeholder="Enter New TodoList Name" id="inputDefault" #newTodo>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal" (click)="PostTodoList(newTodo);">Create</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container center col-md-5">
+  <div class="container center-grid">
+    <table class="table table-hover table-responsive">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">TodoList Name</th>
+          <th scope="col">Created Date</th>
+          <th scope="col"></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-light" *ngFor="let todo of todoList; let i = index;">
+          <td scope="row" #index>{{i+1}}</td>
+          <td #header>{{todo.header}}</td>
+          <td #createdDate>{{todo.createdDate | date : "MM/dd/yyyy HH:mm:ss"}}</td>
+          <td><button type="button" class="btn btn-success" [routerLink]="['/todolistdetail',todo.header,todo.id]">
+            <i class="fas fa-list"></i></button></td>
+          <td><button type="button" class="btn btn-danger" (click)="DeleteTodoList(todo.id, todo)">
+            <i class="fas fa-trash-alt"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

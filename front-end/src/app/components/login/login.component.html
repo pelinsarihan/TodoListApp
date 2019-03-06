@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-light">
+  <a class="navbar-brand">TodoListApp</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor03"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor03">
+    <ul class="navbar-nav mr-auto">
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button [routerLink]="['/login']" class="btn btn-secondary my-2 my-sm-0 mx-lg-2" type="submit">Login</button>
+      <button [routerLink]="['/register']" class="btn btn-secondary my-2 my-sm-0" type="submit">Register</button>
+    </form>
+  </div>
+</nav>
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4 center jumbotron">
+      <div style="text-align:center">
+          <label class="font-weight-bold"><h3>Todo List App</h3></label>
+      </div>
+      <form role="form align-items-center form-border">
+        <div class="form-group">
+          <label class="form-group font-weight-bold" for="username">Username</label>
+          <input type="text" class="form-control" id="username" placeholder="Enter Username.."
+            required="true" #username>
+        </div>
+        <div class="form-group">
+          <label class="form-group font-weight-bold" for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter Password.." required="true" #password>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary form-control font-weight-bold" (click)="LoginAccount(username,password)">Login</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>
+  <div class="container center-grid col-md-4">
+    <div class="alert alert-dismissible alert-danger" *ngIf="status === 401">
+      <strong>Incorrect username or password!</strong>
+    </div>
+  </div>
+</div>
