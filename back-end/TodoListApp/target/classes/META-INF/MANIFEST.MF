@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: TodoListApp
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: pelinsarihan
+Implementation-Vendor-Id: com.todolistapp
+Build-Jdk: 1.8.0_202
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/TodoListApp
+Created-By: Maven Integration for Eclipse
+
